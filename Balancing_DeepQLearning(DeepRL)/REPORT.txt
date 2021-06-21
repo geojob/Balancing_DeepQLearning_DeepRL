@@ -1,0 +1,14 @@
+Project 4 Brief Report Jobin Binoy George
+
+
+Model Architecture:
+
+The Q Network was built using 3 linear layers namely the input layer, the middle layer and the output layer. The first two layers were activated using the RelU function. Many different optimizers were tried out for this task: RMSprop, ADAM and SGD with momentum. However, once again like previous projects ADAM proved to be the best optimizer yielding good results at a fast pace. Different loss functions were also tried out. The pytorch documentation online suggested the Huber L1 loss for reinforcement learning tasks, however, the Huber loss was not able to get out of the 200-300 reward range. When the loss was switched over to MSE loss, the rewards for the episodes fluctuated a lot but also increased with time. The number of neurons for each layer was also experimented with and the best results showed up when the input layers number of nodes was increased to 144 from the first implementation of 64. Similary the output layer number of nodes was also increased. Finally, the right way of decaying the epsilon function was also an important aspect so that the reward value doesn't saturate. By changing the denominator of the exponent of the function the rate of recay could be controlled as the numerator was set to be the number of steps completed. When the decay rate was small 20 implying a faster decay, exploration would not take place and when the decay rate was very high 1000, implying a smaller decay reward values would not reach high numbers so a value of 200 was chosen for the denominator after trial and error which yielded the best results.
+
+Model Metadata:
+
+The model that provided the best rewards came at episode 778. The algorithm was run for 800 episodes each of which computed the training process for 500 steps. This episode had a max reward value of 500.
+
+Comments about project:
+
+The most interesting part of this assignment was how the reward values fluctuated without giving any immediate signs of whether or not the model is functioning accurately. In other words, although low loss values were achieved as the number of episodes trained increased, the value of the reward seemed to take no definitive path. Moreover, only two episodes in the 800 tried gave a max reward value of 500 and they were consecutive (778 and 779). However, the model corresponding to 779 failed the test most of the time wherewas the 778 model worked perfectly. 
